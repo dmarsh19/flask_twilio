@@ -1,12 +1,31 @@
-requires infrastructure_project/9install_lighttpd.sh
+-spin up new aws instance (ubuntu server)
+  -security group to Flask-Default-Web-Server
+  -existing key pair (ec2-zeromq**)
+-From local machine, grab public dns from AWS console
+-Update putty hostname
+-when opening, may need to login as user "ubuntu", no password
+
+mkdir ~/dev
+cd ~/dev
+git clone https://github.com/dmarsh19/infrastructure.git infrastructure_project
+sudo ./infrastructure_project/1install_base.sh
+./infrastructure_project/2setup_base.sh
+source ~/.bashrc
+sudo ./infrastructure_project/9install_lighttpd.sh
+cd /var/www
+git clone https://github.com/dmarsh19/flask_twiml.git flask_twiml_project
+#add below lines to /etc/lighttpd/lighttpd.conf
+sudo service lighttpd restart
+navigate to the url
+
+
 requires python3
-clone into /var/www
 
 This is still a dev webserver.
 For production:
     write log to /var/log
     run under low permission user
-
+# rename local dir in /var/www from git clone to the url? (i.e. twiml.admrsh.com)
 
 #chmod 775 flask_lighttpd.fcgi
 #chmod 775 runserver.py
@@ -15,7 +34,7 @@ For production:
 runserver.fcgi (2 locations)
 runserver.py
 settings.py (APP_LOGFILE)
-
+below for bin-path in lighttpd.conf, fcgi
 
 # in /etc/lighttpd/lighttpd.conf, add the following line in the server.modules array:
         "mod_fastcgi",
@@ -37,8 +56,3 @@ fastcgi.server = (
     "max-procs" => 1
   ) )
 )
-
-
-
-sudo service lighttpd restart
-navigate to the url
