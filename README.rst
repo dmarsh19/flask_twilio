@@ -13,7 +13,13 @@ sudo ./infrastructure_project/1install_base.sh
 source ~/.bashrc
 sudo ./infrastructure_project/9install_lighttpd.sh
 cd /var/www
-git clone https://github.com/dmarsh19/flask_twiml.git flask_twiml_project
+### THIS IS BAD!!
+## will install as root, needs permissions set for a web user (www-data?)
+# and installed that way
+### /var/www is owned by root
+sudo git clone https://github.com/dmarsh19/flask_twiml.git flask_twiml_project
+sudo python3 -m pip install -r flask_twiml_project/requirements.txt
+sudo nano /etc/lighttpd/lighttpd.conf
 #add below lines to /etc/lighttpd/lighttpd.conf
 sudo service lighttpd restart
 navigate to the url
