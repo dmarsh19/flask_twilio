@@ -1,19 +1,18 @@
 requires infrastructure_project/9install_lighttpd.sh
 requires python3
+clone into /var/www
 
-This is still intended as a dev webserver.
+This is still a dev webserver.
 For production:
-    no virtualenv
     write log to /var/log
     run under low permission user
-    install in /var/www
 
 
 #chmod 775 flask_lighttpd.fcgi
 #chmod 775 runserver.py
 
 # may need to change python path in these files:
-flask_lighttpd.fcgi (2 locations)
+runserver.fcgi (2 locations)
 runserver.py
 settings.py (APP_LOGFILE)
 
@@ -32,8 +31,8 @@ debug.log-condition-handling = "enable"
 fastcgi.debug = 1
 fastcgi.server = (
   "/" => ( (
-    "socket" => "/tmp/flask_lighttpd-fcgi.socket",
-    "bin-path" => "/home/dmarsh/dev/flask_lighttpd_project/flask_lighttpd.fcgi",
+    "socket" => "/tmp/runserver-fcgi.socket",
+    "bin-path" => "/var/www/flask_twiml_project/runserver.fcgi",
     "check-local" => "disable",
     "max-procs" => 1
   ) )
