@@ -1,7 +1,7 @@
 """
 """
 from flask import render_template
-from twilio import twiml
+from twilio.twiml.messaging_response import MessagingResponse
 
 from . import base
 
@@ -12,9 +12,8 @@ def main():
     return render_template('base.html')
 
 
-@base.route('/twilio', methods = ['GET', 'POST'])
+@base.route('/twilio', methods=['GET', 'POST'])
 def twilio():
     """Respond to SMS with SMS"""
-    resp = twiml.Response()
-    resp.message("Hello from flask_twiml!")
+    resp = MessagingResponse().message("Hello from flask_twiml!")
     return str(resp)
