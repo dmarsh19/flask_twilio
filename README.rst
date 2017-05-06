@@ -19,6 +19,7 @@ cd /var/www
 ### /var/www is owned by root
 sudo git clone https://github.com/dmarsh19/flask_twiml.git flask_twiml_project
 sudo python3 -m pip install -r flask_twiml_project/requirements.txt
+touch flask_twiml_project/settings.py
 sudo nano /etc/lighttpd/lighttpd.conf
 #add below lines to /etc/lighttpd/lighttpd.conf
 sudo service lighttpd restart
