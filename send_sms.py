@@ -21,6 +21,9 @@ msg = 'Hello from flask_twiml rest client'
 if __name__ == '__main__':
     client = Client(app.config['ACCOUNT_SID'], app.config['AUTH_TOKEN'])
 
-    message = client.api.account.messages.create(to=app.config['TO_NUMBER'],
-                                                 from_=app.config['FROM_NUMBER'],
-                                                 body=msg)
+    # message = client.api.account.messages.create(to=app.config['TO_NUMBER'],
+    #                                              from_=app.config['FROM_NUMBER'],
+    #                                              body=msg)
+    message = client.messages.create(to=app.config['TO_NUMBER'],
+                                     from_=app.config['FROM_NUMBER'],
+                                     body=msg)
