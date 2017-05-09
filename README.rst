@@ -22,6 +22,9 @@ sudo python3 -m pip install -r flask_twiml_project/requirements.txt
 touch flask_twiml_project/settings.py
 sudo nano /etc/lighttpd/lighttpd.conf
 #add below lines to /etc/lighttpd/lighttpd.conf
+# twilio account configurations:
+# https://www.twilio.com/console/sms/dev-tools/twiml-apps
+# https://www.twilio.com/console/phone-numbers/incoming
 sudo service lighttpd restart
 navigate to the url
 
