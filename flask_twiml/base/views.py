@@ -18,7 +18,7 @@ def twilio():
     met_before = request.cookies.get('flask_twiml_metbefore', False)
     if met_before:
         # this is ugly, but you can't store a bool in cookies so its converting str to bool
-        if met_before.upper() == 'TRUE':
+        if str(met_before).upper() == 'TRUE':
             return redirect(url_for('.met_before'))
     #TODO: set cookie always
     # for now, this will only set the cookie if the user doesn't send 'hello'
@@ -32,8 +32,8 @@ def twilio():
 
     twml = MessagingResponse().message("Hello from flask_twiml!")
     resp = make_response(str(twml))
-    resp.set_cookie('flask_twiml_metbefore', value='TRUE')
-    return str(resp)
+    resp.set_cookie('flask_twiml_metbefore', 'TRUE')
+    return resp
 
 
 @base.route('/hello', methods=['GET', 'POST'])
