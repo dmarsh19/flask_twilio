@@ -7,7 +7,6 @@ git clone https://github.com/dmarsh19/flask_twilio.git flask_twilio_project
 cd flask_twilio_project
 ```
 
-- Update the project name and url extension in install.sh
 - Update the required settings.py values
   - ACCOUNT_SID
   - AUTH_TOKEN
@@ -18,6 +17,6 @@ cd flask_twilio_project
 > https://www.twilio.com/console/phone-numbers/incoming
 
 ```
-sudo ./install.sh
+sudo ./install.sh "flask_twilio" "/twilio"
 ```
 

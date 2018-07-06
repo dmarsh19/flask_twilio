@@ -1,7 +1,5 @@
 #!/bin/bash
 
-PROJECT_NAME="flask_twilio"
-URL_EXTENSION="/twilio"
 SRV_DEST=/srv/lighttpd/${PROJECT_NAME}_project
 LIGHTY_CONF=/etc/lighttpd/lighttpd.conf
 
@@ -14,8 +12,16 @@ as_root()
       exit -1
   fi
 }
-
 as_root
+
+if [ ! $1 ] || [ ! $2 ]
+  then
+    echo "Usage: $0 [PROJECT_NAME] [URL_EXTENSION]"
+    echo 'Example: '$0' "flask_lighttpd" "/"'
+    exit -1
+fi
+PROJECT_NAME=$1
+URL_EXTENSION=$2
 
 python3 -m pip install -r requirements.txt
 
@@ -32,11 +38,11 @@ if [ $? -eq 0 ]
     echo "" >> $LIGHTY_CONF
     echo "#### mod_fastcgi ####" >> $LIGHTY_CONF
     echo "fastcgi.server = (" >> $LIGHTY_CONF
-    echo "  '${URL_EXTENSION}' => ( (" >> $LIGHTY_CONF
-    echo "    'socket' => '/tmp/${PROJECT_NAME}-fcgi.socket'," >> $LIGHTY_CONF
-    echo "    'bin-path' => '${SRV_DEST}/${PROJECT_NAME}.fcgi'," >> $LIGHTY_CONF
-    echo "    'check-local' => 'disable'," >> $LIGHTY_CONF
-    echo "    'max-procs' => 1" >> $LIGHTY_CONF
+    echo '  "'${URL_EXTENSION}'" => ( (' >> $LIGHTY_CONF
+    echo '    "socket" => "'/tmp/${PROJECT_NAME}-fcgi.socket'",' >> $LIGHTY_CONF
+    echo '    "bin-path" => "'${SRV_DEST}/${PROJECT_NAME}.fcgi'",' >> $LIGHTY_CONF
+    echo '    "check-local" => "disable",' >> $LIGHTY_CONF
+    echo '    "max-procs" => 1' >> $LIGHTY_CONF
     echo "  ) )" >> $LIGHTY_CONF
     echo ")" >> $LIGHTY_CONF
     echo "" >> $LIGHTY_CONF
