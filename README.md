@@ -1,8 +1,9 @@
 - **Complete 1base.sh install\setup from infrastructure_project.**
 
 ```
+cd ~/infrastructure_project
+sudo ./9install_webserver.sh lighttpd
 cd ~/dev
-sudo ./infrastructure_project/9install_lighttpd.sh
 git clone https://github.com/dmarsh19/flask_twilio.git flask_twilio_project
 cd flask_twilio_project
 ```
