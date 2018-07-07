@@ -1,7 +1,7 @@
 - **Complete 1base.sh install\setup from infrastructure_project.**
 
 ```
-cd ~/infrastructure_project
+cd ~/dev/infrastructure_project
 sudo ./9install_webserver.sh lighttpd
 cd ~/dev
 git clone https://github.com/dmarsh19/flask_twilio.git flask_twilio_project
@@ -20,4 +20,6 @@ cd flask_twilio_project
 ```
 sudo ./install.sh "flask_twilio" "/twilio"
 ```
+
+**If you have already deployed a separate flask project on this machine, subsequent deploys will not write the apporpriate server config in lighttpd.conf.**
 
